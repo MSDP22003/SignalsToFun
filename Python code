@@ -1,15 +1,26 @@
-# need to install pyfirmata
-# In arduino IDE go to file, examples, firmata, standard firmata, upload to arduino
-import pyfirmata
-import time
+# Run upload normal code to arduino, seems to be slow to capture, dont know why
+import serial
+import matplotlib.pyplot as plt
 
-board = pyfirmata.Arduino('COM5')
-it = pyfirmata.util.Iterator(board)
-it.start()
+plt.ion()
+fig=plt.figure()
 
-analog_input = board.get_pin('a:0:i')
 
+i=0
+x=list()
+y=list()
+i=0
+ser = serial.Serial('COM5',9600)
+ser.close()
+ser.open()
 while True:
-    analog_value = analog_input.read()
-    print(analog_value)
-    time.sleep(0.1)
+
+    data = ser.readline()
+    print(data.decode('utf-8'))
+    x.append(i)
+    y.append(data.decode())
+
+    plt.scatter(i, float(data.decode('utf-8')))
+    i += 1
+    plt.show()
+    plt.pause(0.0000000001)  # Note this correc
