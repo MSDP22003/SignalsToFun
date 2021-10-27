@@ -23,4 +23,4 @@ while True:
     plt.scatter(i, float(data.decode('utf-8')))
     i += 1
     plt.show()
-    plt.pause(0.0000000001)  # Note this correc
+    plt.pause(0.0000000001) 
