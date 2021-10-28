@@ -5,12 +5,11 @@ import matplotlib.pyplot as plt
 plt.ion()
 fig=plt.figure()
 
-
 i=0
 x=list()
 y=list()
-i=0
-ser = serial.Serial('COM5',9600)
+
+ser = serial.Serial('COM4',9600)
 ser.close()
 ser.open()
 while True:
