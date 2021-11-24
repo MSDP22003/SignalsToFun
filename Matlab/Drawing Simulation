@@ -1,21 +1,21 @@
-%% Change gear ratio to change picture
+%% Change any Parameter
 W=5*pi/3;% angular velocity in rad/s
 D1=0.23;% diameter in m of biggest gear
-D2=D1/3.1156847;% diamter in m of lower gear
+D2=D1/3.2;% diamter in m of lower gear
 D3=D2;% diamter in m of upper gear
 W2=D1/D2*W;%angular velocity of lower gear in rad/s
 W3=D1/D3*W;%angular velocity of upper gear in rad/s
 P2=0.9*D2/2;% distance from center of lower gear to attachemnt point in m
 P3=0.9*D3/2;% distance from center of upper gear to attachemnt point in m
-Gamma2(1)=2*pi/3;% angle between horizontal and lower gear center in radians
-Gamma3(1)=4*pi/3;% angle between horizontal and upper gear center in radians
-L2=.1;% Length of bar connected to lower gear
+Gamma2(1)=5*pi/4;% angle between horizontal and lower gear center in degrees
+Gamma3(1)=3*pi/4;% angle between horizontal and upper gear center in degrees
+L2=.16;% Length of bar connected to lower gear
 L3=.1;% Length of bar connected to upper gear
-theta2(1)=0;% intial angle location of lower gear connection point in rad
-theta3(1)=0;% intial angle location of upper gear connection point in rad
-%Don't touch anything below
+theta2(1)=pi/2;% intial angle location of lower gear connection point in rad
+theta3(1)=pi/3;% intial angle location of upper gear connection point in rad
 t=0:0.001:10;% time array in s
-for i = 1:length(t)
+
+for i = 1:length(t);
     theta2(i)=theta2(1)+W2*t(i);
     theta3(i)=theta3(1)+W3*t(i);
     Gamma3(i)=Gamma3(1)+W*t(i);
@@ -24,20 +24,20 @@ for i = 1:length(t)
     x3(i)=P3*cos(theta3(i))+(D1/2+D3/2)*cos(Gamma3(1));
     y2(i)=P2*sin(theta2(i))+(D1/2+D2/2)*sin(Gamma2(1));
     y3(i)=P3*sin(theta3(i))+(D1/2+D3/2)*sin(Gamma3(1));
-    phi2p(1)=pi/6;%initial guess of angle between lower gear and horizontal
-    phi3p(1)=10*pi/6;%initial guess of angle between upper gear and horizontal
+    phi2p(1)=pi/3;%initial guess of angle between lower gear and horizontal
+    phi3p(1)=5*pi/3;%initial guess of angle between upper gear and horizontal
     k=1;
 while 1
 J=[-L2*sin(phi2p(k)),L3*sin(phi3p(k)); L2*cos(phi2p(k)),-L3*cos(phi3p(k))];
 f1=x2(i)+L2*cos(phi2p(k))-(x3(i)+L3*cos(phi3p(k)));
 f2=y2(i)+L2*sin(phi2p(k))-(y3(i)+L3*sin(phi3p(k)));
 F=[-f1;-f2];
-d=J\F;
+d=pinv(J)*F;;
 dphi2=d(1);
 dphi3=d(2);
 phi2p(k+1)=phi2p(k)+dphi2;
 phi3p(k+1)=phi3p(k)+dphi3;
-if phi2p(k+1)/phi2p(k)>0.000001 & phi3p(k+1)/phi3p(k)>0.000001;
+if phi2p(k+1)/phi2p(k)>0.01 & phi3p(k+1)/phi3p(k)>0.01;
     phi2(i)=phi2p(k+1);
     phi3(i)=phi3p(k+1);
     break
@@ -60,6 +60,4 @@ for k = 1:numpoints
     drawnow 
 end
 
-figure(1)
-plot(xp,yp)
 clear all% deletes stored data so its better to run multiple times in a row
