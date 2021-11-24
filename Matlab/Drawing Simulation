@@ -61,3 +61,5 @@ for k = 1:numpoints
 end
 
 clear all% deletes stored data so its better to run multiple times in a row
+%%
+plot(xp,yp)
