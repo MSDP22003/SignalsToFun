@@ -15,7 +15,7 @@ L2=.1;% Length of bar connected to lower gear
 L3=.1;% Length of bar connected to upper gear
 theta2(1)=0;% intial angle location of lower gear connection point in rad
 theta3(1)=pi;% intial angle location of upper gear connection point in rad
-%Dont touch below except for line 55 which controls color
+%Dont touch below except for line 57 which controls color
 endt=1/(D1/D2-floor(D1/D2))/(W/(2*pi));% calculcating how long for drawing to repeat 
 t=0:0.001:(endt+.5);% time array in s
 
