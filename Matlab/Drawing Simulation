@@ -1,8 +1,10 @@
-%% Change any Parameter
+%% Can change p2,p3,Gearratio2,Gearratio3,Gamma2(1),Gamma3(1),L2,L3,Theta2(1),Theta3(1) TO CHANGE PICTURE
 W=5*pi/3;% angular velocity in rad/s
 D1=0.23;% diameter in m of biggest gear
-D2=D1/3.2;% diamter in m of lower gear
-D3=D2;% diamter in m of upper gear
+Gearratio2=3.2;%Ratio between big gear and lower gear
+Gearratio3=3.2;%Ratio between big gear and upper gear
+D2=D1/Gearratio2;% diamter in m of lower gear
+D3=D1/Gearratio3;% diamter in m of upper gear
 W2=D1/D2*W;%angular velocity of lower gear in rad/s
 W3=D1/D3*W;%angular velocity of upper gear in rad/s
 P2=0.9*D2/2;% distance from center of lower gear to attachemnt point in m
@@ -10,7 +12,7 @@ P3=0.9*D3/2;% distance from center of upper gear to attachemnt point in m
 Gamma2(1)=5*pi/4;% angle between horizontal and lower gear center in degrees
 Gamma3(1)=3*pi/4;% angle between horizontal and upper gear center in degrees
 L2=.1;% Length of bar connected to lower gear
-L3=.11;% Length of bar connected to upper gear
+L3=.1;% Length of bar connected to upper gear
 theta2(1)=0;% intial angle location of lower gear connection point in rad
 theta3(1)=pi;% intial angle location of upper gear connection point in rad
 %Dont touch below except for line 55 which controls color
