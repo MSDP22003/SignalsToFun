@@ -2,19 +2,20 @@
 
 // Arduino pin numbers
 const int EMG1 = 0; // analog pin connected to EMG1 output
-const int EMG2 = 1; // analog pin connected to EMG2 output
+const int EMG2 = 2; // analog pin connected to EMG2 output
 
 void setup() {
   Serial.begin(9600);
 }
 
 void loop() {
-  Serial.print("EMG1: ");
+  //Serial.print(" EMG1: ");
   Serial.print(analogRead(EMG1));
-  Serial.print("\n");
-  Serial.print("EMG2: ");
+  Serial.print(",");
+  //Serial.print("\n");
+  //Serial.print(" EMG2: ");
   Serial.println(analogRead(EMG2));
-  Serial.print("\n\n");
+  //Serial.print("\n\n");
   delay(1000);
 }
 
