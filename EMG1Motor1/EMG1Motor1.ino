@@ -1,7 +1,5 @@
-#include <Stepper.h>
-
 // change this to the number of steps on your motor
-#define STEPS 2048
+#define STEPS 4096
 
 // Define Motor Pins (2 Motors used)
 
@@ -17,18 +15,21 @@ Stepper stepper1(STEPS, motorPin1, motorPin3, motorPin2, motorPin4);
 
 void setup() {
   Serial.begin(9600);
-  stepper1.setSpeed(15); //this affects how quickly data is being collected
+  //stepper1.setSpeed(10); //this affects how quickly data is being collected
 }
 
 void loop() {
-    EMG1 = analogRead(A0); // analog pin connected to EMG1 output
-    EMG1Speed = 0;
-    stepper1.step(EMG1Speed);
-    Serial.println(EMG1);
-     while(EMG1 >200){ //this line should be adaptable based on peoples baseline
+ 
       EMG1 = analogRead(A0);
-      EMG1Speed = 2*(EMG1 + 200);//this line controls the speed that the motor spins at
-      stepper1.step(EMG1Speed);
-      Serial.println(EMG1);
-     }    
+      if (EMG1>120)\\120 is level of noise
+      {
+      EMG1Speed = 10*EMG1/600;//this line controls the speed that the motor spins at based on analog input \600 should be able to change based on individual
+      stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
+      stepper1.step(1);}
+      Serial.print(0); // To freeze the lower limit
+Serial.print(" ");
+Serial.print(1000); // To freeze the upper limit
+Serial.print(" ");
+Serial.println(EMG1); // To send all three 'data' points to the plotter
+  
 }
