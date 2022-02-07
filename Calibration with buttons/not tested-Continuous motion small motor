@@ -11,6 +11,7 @@
 int Max=200;// initial value, what somewhere close to noise
 int EMG1Speed=0;
 int EMG1=0;
+int noise= 120// level of noise in device, what it reads when not flexing
 const int Resetbutton= 2 //number of reset  button pin
 const int calibratebutton=3 //number of calibration button pin
 Stepper stepper1(STEPS, motorPin1, motorPin3, motorPin2, motorPin4);
@@ -36,15 +37,15 @@ calibrate=digitalread(calibratebutton);// read the state of calibration button
             Max=EMG1
         }
       }
-   if (calibrate == LOW && reset == LOW){
+   else if (calibrate == LOW && reset == LOW){
    
       
-      if (EMG1>120 && <= Max)\\120 is level of noise, may need to fine tune
+      if (EMG1>noise && <= Max)\\120 is level of noise, may need to fine tune
       {
         EMG1Speed = 10*EMG1/Max;//this line controls the speed that the motor spins at based on analog input
         stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
         stepper1.step(1);}
-      if (EMG1>Max) {
+      else if (EMG1>Max) {
         EMG1Speed = 12;//this line controls the speed that the motor spins, 12 is based on max speed of motor, may need to be tweaked
         stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
         stepper1.step(1);// can increase this number if needed, indirect relationship with speed of graph updating tho
