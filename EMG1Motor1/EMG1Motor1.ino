@@ -1,5 +1,5 @@
 // change this to the number of steps on your motor
-#define STEPS 4096
+#define STEPS 2048
 
 // Define Motor Pins (2 Motors used)
 
