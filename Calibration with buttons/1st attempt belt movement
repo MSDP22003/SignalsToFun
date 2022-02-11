@@ -20,7 +20,7 @@ int distance= 2048;// need to find this, is the number of steps to move a quarte
 
 
 const int Resetbutton= 2 ;//number of reset  button pin
-const int calibratebutton=4;//number of calibration button pin
+const int calibratebutton=3;//number of calibration button pin
 
 Stepper stepper1(STEPS, motorPin1, motorPin3, motorPin2, motorPin4);
 
