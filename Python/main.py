@@ -3,8 +3,13 @@ from matplotlib import style
 from matplotlib.animation import FuncAnimation
 import serial
 
+# ask the user for the COM port info
+comportnum = input("Enter the COM port #: ")
+comport = "COM" + comportnum
+# print(comport)
+
 # initialize serial port
-ser = serial.Serial('COM4', 9600)
+ser = serial.Serial(comport, 9600)
 ser.timeout = 10  # specify timeout
 ser.close()
 ser.open()
@@ -17,9 +22,9 @@ if ser.is_open:
 
 # style.use('ggplot') #might make graph more aesthetic but rn it's making things worse
 
-# fig = plt.figure()
-fig, (ax1, ax2) = plt.subplots(2, sharex=True)
-# ax1 = fig.add_subplot(1, 1, 1)  #means the subplot is on a grid system that's 1x1 #is no longer used for multiplots
+fig = plt.figure()
+#fig, (ax1, ax2) = plt.subplots(2, sharex=True)
+ax1 = fig.add_subplot(1, 1, 1)  #means the subplot is on a grid system that's 1x1 #is no longer used for multiplots
 emgsignal1 = []  # defining the place to store y values
 
 
@@ -41,27 +46,18 @@ def animate(i):  # i is the interval
         emgsignal1.extend(newys)
         xs = [k for k in range(len(emgsignal1))]
 
-        # replace emgsignal2 with the second EMG signal when available
-        # note: might need to add in an "x2" variable if for any reason it's not the same as xs
-        emgsignal2 = emgsignal1
-
         # graph formatting for graph 1
         ax1.clear()  # clears any data that was previously on the graph
         ax1.set_xlim([len(emgsignal1) - len(newys) * 10, len(emgsignal1) + 100])
         ax1.set_ylim([0, 25])
-        # graph formatting for graph 2
-        ax2.clear()  # clears any data that was previously on the graph
-        ax2.set_xlim([len(emgsignal1) - len(newys) * 10, len(emgsignal1) + 100])
-        ax2.set_ylim([0, 25])
+
         # graph labeling
         plt.xlabel('Units')
         plt.ylabel("Signal (currently just noise)")
-        fig.suptitle('Adding a Second Subplot\n11/3/21')  # \n starts a new line
+        fig.suptitle('EMG Signal vs. Time \n Updated for COM entry 2/18/22')  # \n starts a new line
 
         # plots the data
         ax1.plot(xs, emgsignal1)
-        ax2.plot(xs, emgsignal2)
-
 
 # update the graph called fig with the function called animate every 1000 ms
 ani = FuncAnimation(fig, animate, interval=50)
