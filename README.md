@@ -36,6 +36,7 @@ effects of their muscle movement in real time with labeled axes.
 
 ##### Code Setup
 Type the following into Command Prompt
+    
     ```
     cd *file location*
     cd Python 
