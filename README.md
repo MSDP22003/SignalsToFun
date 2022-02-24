@@ -35,16 +35,16 @@ effects of their muscle movement in real time with labeled axes.
 - pip (comes with python)
 
 ##### Code Setup
-*this part is currently incorrect*
-1. Install Dependencies by typing the following into Command Prompt
+Type the following into Command Prompt
     ```
+    cd *file location*
     cd Python 
     pip install -r requirements.txt
+    python main.py
+    *enter COM port # from Arduino set up*
     ```
-2. Run Code with
-    `
-   python main.py
-   ` or install using the pycharm configuration below. 
+    
+    or install and run using the pycharm configuration below. 
 
 
 
