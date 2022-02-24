@@ -42,6 +42,7 @@ Type the following into Command Prompt
     pip install -r requirements.txt
     python main.py
     *enter COM port # from Arduino set up*
+    
     ```
     
     or install and run using the pycharm configuration below. 
