@@ -37,17 +37,16 @@ effects of their muscle movement in real time with labeled axes.
 ##### Code Setup
 Type the following into Command Prompt
     
-    ```
-    cd *file location*
-    cd Python 
-    pip install -r requirements.txt
-    python main.py
-    *enter COM port # from Arduino set up*
-    
-    ```
-    
-    or install and run using the pycharm configuration below. 
+ ```
+ cd *file location*
+ cd Python 
+ pip install -r requirements.txt
+ python main.py
+ *enter COM port # from Arduino set up*
 
+ ```
+
+ or install and run using the pycharm configuration below. 
 
 
 ###### IDE Setup
