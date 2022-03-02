@@ -13,7 +13,7 @@ Small Motor (Belt Movement): SmallMotor.ino
 
 
 #### Directions:
-1. Open the file titled "FILE NAME.ide" for the motor you want to run
+1. Open the file titled "FILE NAME" for the motor you want to run
 2. In the Arduino IDE select the COM port
 
    a. Tools --> Port
