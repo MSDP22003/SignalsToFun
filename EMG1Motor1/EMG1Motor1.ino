@@ -42,30 +42,30 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
       if (EMG1<60){
         stepper1.step(0);
       }
-      else if (EMG1>60 && EMG1 < Max/4){//120 is level of noise, may need to fine tune
+      else if(EMG1<Max){ //(EMG1>60 && EMG1 < Max/4){//120 is level of noise, may need to fine tune
       
-        EMG1Speed = 20;//this line controls the speed that the motor spins at based on analog input
+        EMG1Speed = 100*EMG1/Max;//this line controls the speed that the motor spins at based on analog input
         stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
         stepper1.step(5);
         }
-       else if (EMG1>Max/4 && EMG1 <Max/2){//120 is level of noise, may need to fine tune
+      // else if (EMG1>Max/4 && EMG1 <Max/2){//120 is level of noise, may need to fine tune
       
-        EMG1Speed = 40;//this line controls the speed that the motor spins at based on analog input
-        stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
-        stepper1.step(5);
-       }
-        else if (EMG1>Max/2 && EMG1 <=3*Max/4){//120 is level of noise, may need to fine tune
+       // EMG1Speed = 40;//this line controls the speed that the motor spins at based on analog input
+        //stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
+        //stepper1.step(5);
+       //}
+        //else if (EMG1>Max/2 && EMG1 <=3*Max/4){//120 is level of noise, may need to fine tune
       
-        EMG1Speed = 60;//this line controls the speed that the motor spins at based on analog input
-        stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
-        stepper1.step(5);
-        }
-        else if (EMG1>3*Max/4 && EMG1 < Max){//120 is level of noise, may need to fine tune
+       // EMG1Speed = 60;//this line controls the speed that the motor spins at based on analog input
+        //stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
+        //stepper1.step(5);
+        //}
+       // else if (EMG1>3*Max/4 && EMG1 < Max){//120 is level of noise, may need to fine tune
       
-        EMG1Speed = 80;//this line controls the speed that the motor spins at based on analog input
-        stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
-        stepper1.step(5);
-        }
+        //EMG1Speed = 80;//this line controls the speed that the motor spins at based on analog input
+        //stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
+        //stepper1.step(5);
+        //}
       else {
         EMG1Speed = 100;//this line controls the speed that the motor spins, 12 is based on max speed of motor, may need to be tweaked
         stepper1.setSpeed(EMG1Speed); //this affects how quickly data is being collected
