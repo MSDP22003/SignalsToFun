@@ -7,8 +7,8 @@ the brains behind the calibration capabilities.
 
 There are two Arduino files, one for each of the two motors:
 ```
-Large Motor (Gear Spin): FILE NAME
-Small Motor (Belt Movement): FILE NAME
+Big Motor (Gear Spin): BigMotor.ino
+Small Motor (Belt Movement): SmallMotor.ino
 ```
 
 
@@ -17,9 +17,9 @@ Small Motor (Belt Movement): FILE NAME
 2. In the Arduino IDE select the COM port
 
    a. Tools --> Port
-3. Import the necessary libraries listed in the first 5 lines 
+3. Import the Stepper library 
    
-   a. Tools --> Manage Libraries --> find listed library --> "Install"
+   a. Tools --> Manage Libraries --> find "Stepper.h" --> "Install"
 4. Upload the code to the Arduino hardware
   
    a. Click the arrow next to the check mark in the top left corner
