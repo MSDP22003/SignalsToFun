@@ -58,7 +58,12 @@ def animate(i):  # i is the interval
         # plots the data
         ax1.plot(xs, emgsignal1)
 
+<<<<<<< Updated upstream
 # update the graph called fig with the function called animate every 50 ms
 ani = FuncAnimation(fig, animate, interval=50)
+=======
+# update the graph called fig with the function called animate every 1000 ms
+ani = FuncAnimation(fig, animate, interval=100)
+>>>>>>> Stashed changes
 
 plt.show()
