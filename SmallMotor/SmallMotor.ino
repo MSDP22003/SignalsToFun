@@ -11,12 +11,12 @@
 int Max=100;// initial value, want somewhere close to noise
 int EMG1Speed=0;
 int EMG1=0;
-int currentstate=1;// intial position of gear (only 4 options, 1,2,3,4 in order to simplify)
+int currentstate=0;// intial position of gear (only 4 options, 1,2,3,4 in order to simplify)
 int nextstate=0;// will hold the postion that the motor should move to
 int reset=0;
 int calibrate=0;
 
-int distance= 2048/3;// need to find this, is the number of steps to move a quarter of the way around arc
+int distance= 2048/4;// need to find this, is the number of steps to move a quarter of the way around arc
 
 
 const int Resetbutton= 2 ;//number of reset  button pin
@@ -40,6 +40,7 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
 //buttons will be equal to HIGH if pressed
   if (reset == HIGH){
         Max=100;// 100 should be near or lower than noise
+        nextstate=0;
       }
   else if (calibrate == HIGH) {
       if (EMG1>Max){
@@ -49,17 +50,20 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
    else {
    
       
-      if (EMG1 <= Max/4) 
+      if (EMG1 <= Max/5 || EMG1<100)//100 is noise level can be adjusted as we finalize gain 
       {
-        nextstate=1;
+        nextstate=0;
       }
-      else if (EMG1> Max/4 &&  EMG1<= Max/2) {
-        nextstate= 2;
+      else if (EMG1> Max/5 &&  EMG1<= 2*Max/5) {
+        nextstate= 1;
       }
-      else if(EMG1>Max/2 && EMG1 <= 3*Max/4){
+      else if(EMG1>2*Max/5 && EMG1 <= 3*Max/5){
+        nextstate=2;
+      }
+       else if(EMG1>3*Max/5 && EMG1 <= 4*Max/5){
         nextstate=3;
       }
-     else if(EMG1<3*Max/4){
+     else if(EMG1<4*Max/5){
       nextstate=4;
      }
       }
