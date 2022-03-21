@@ -40,7 +40,7 @@ def animate(i):  # i is the interval
 
         for v in vals:  # for loop for every value in the array called vals
             if v != '':  # making sure no lines that are empty are being processed
-                if float(v.strip('\n\r')) >= 10: # getting rid of spikes to zero
+                if float(v.strip('\n\r')) >= 10:  # getting rid of spikes to zero
                     newys.append(float(v.strip('\n\r')))  # getting rid of the new line & carriage return, removing any stragglers, & converting the serial input to a float
         emgsignal1.extend(newys)
         xs = [k for k in range(len(emgsignal1))]
@@ -48,7 +48,7 @@ def animate(i):  # i is the interval
         # graph formatting for graph 1
         ax1.clear()  # clears any data that was previously on the graph
         ax1.set_xlim([len(emgsignal1) - len(newys) * 10, len(emgsignal1) + 100])
-        ax1.set_ylim([0, 800]) # change this limit when you get actual EMG signal
+        ax1.set_ylim([0, 800])  # change this limit when you get actual EMG signal
         ax1.set_xticklabels('')
 
         # graph labeling
