@@ -19,7 +19,7 @@ Small Motor (Belt Movement): SmallMotor.ino
    a. Tools --> Port
 3. Import the Stepper library 
    
-   a. Tools --> Manage Libraries --> find "Stepper.h" --> "Install"
+   a. Tools --> Manage Libraries --> find "Stepper" --> "Install"
 4. Upload the code to the Arduino hardware
   
    a. Click the arrow next to the check mark in the top left corner
