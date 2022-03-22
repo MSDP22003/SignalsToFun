@@ -15,8 +15,8 @@ int currentstate=0;// intial position of gear (only 4 options, 1,2,3,4 in order 
 int nextstate=0;// will hold the postion that the motor should move to
 int reset=0;
 int calibrate=0;
-
-int distance= 2048/4;// need to find this, is the number of steps to move a quarter of the way around arc
+int steps=0;
+int distance= 512/4;// need to find this, is the number of steps to move a quarter of the way around arc
 
 
 const int Resetbutton= 2 ;//number of reset  button pin
@@ -28,8 +28,8 @@ void setup() {
   Serial.begin(9600);
   pinMode(Resetbutton, INPUT);
    pinMode(calibratebutton, INPUT);
-  stepper1.setSpeed(15);
-  stepper1.step(-2048);
+  stepper1.setSpeed(18);
+  stepper1.step(-STEPS);
 }
 
 void loop() {
@@ -39,7 +39,7 @@ reset=digitalRead(Resetbutton);//read the state of reset button
 calibrate=digitalRead(calibratebutton);// read the state of calibration button
 //buttons will be equal to HIGH if pressed
   if (reset == HIGH){
-        Max=100;// 100 should be near or lower than noise
+        Max=50;// 50 should be near or lower than noise
         nextstate=0;
       }
   else if (calibrate == HIGH) {
@@ -50,7 +50,7 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
    else {
    
       
-      if (EMG1 <= Max/5 || EMG1<100)//100 is noise level can be adjusted as we finalize gain 
+      if (EMG1 <= Max/5 ) 
       {
         nextstate=0;
       }
@@ -67,16 +67,24 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
       nextstate=4;
      }
       }
-      if (currentstate!=nextstate) {
-      stepper1.step((nextstate - currentstate)*distance);
+      while (currentstate != nextstate) {
+        steps=(nextstate-currentstate)*distance;
+      stepper1.step(steps);
       currentstate=nextstate;//updates the location of belt
       }
-      
+      //if (currentstate >nextstate){
+        //steps=abs(nextstate-currentstate)*distance;
+        //stepper1.step(-steps);
+      //}
+      //else if (currentstate<nextstate){
+       //steps=abs(nextstate-currentstate)*distance;
+        //stepper1.step(steps); 
+      //}
 //Serial.print(0); // To freeze the lower limit
 //Serial.print(" ");
 //Serial.print(1000); // To freeze the upper limit
 //Serial.print(" ");
-//Serial.print(Max); // to visualize max value they produced during calibration, this line can be commented out as needed
-//Serial.print(" ");
+Serial.print(Max); // to visualize max value they produced during calibration, this line can be commented out as needed
+Serial.print(" ");
 Serial.println(EMG1); // 
 }
