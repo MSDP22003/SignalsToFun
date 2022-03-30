@@ -28,8 +28,8 @@ void setup() {
   Serial.begin(9600);
   pinMode(Resetbutton, INPUT);
    pinMode(calibratebutton, INPUT);
-  stepper1.setSpeed(18);
-  stepper1.step(-STEPS);
+  stepper1.setSpeed(15);
+  stepper1.step(STEPS+500);
 }
 
 void loop() {
@@ -69,7 +69,7 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
       }
       while (currentstate != nextstate) {
         steps=(nextstate-currentstate)*distance;
-      stepper1.step(steps);
+      stepper1.step(-steps);
       currentstate=nextstate;//updates the location of belt
       }
 // thoeretical fix for delay in signal      
@@ -89,7 +89,7 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
 //Serial.print(" ");
 //Serial.print(1000); // To freeze the upper limit
 //Serial.print(" ");
-Serial.print(Max); // to visualize max value they produced during calibration, this line can be commented out as needed
-Serial.print(" ");
+//Serial.print(Max); // to visualize max value they produced during calibration, this line can be commented out as needed
+//Serial.print(" ");
 Serial.println(EMG1); // 
 }

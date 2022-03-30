@@ -11,7 +11,7 @@ const int stepsPerRevolution = 2048;
 Stepper myStepper = Stepper(stepsPerRevolution, 8, 10, 9, 11);
 void setup() {
   // Set the speed to 5 rpm:
-  myStepper.setSpeed(18);
+  myStepper.setSpeed(15);
   
   // Begin Serial communication at a baud rate of 9600:
   Serial.begin(9600);
@@ -19,11 +19,11 @@ void setup() {
 void loop() {
   // Step one revolution in one direction:
   Serial.println("clockwise");
-  myStepper.step(stepsPerRevolution);
+  myStepper.step(-stepsPerRevolution);
   delay(500);
   
   // Step one revolution in the other direction:
   Serial.println("counterclockwise");
-  myStepper.step(-stepsPerRevolution);
+  myStepper.step(stepsPerRevolution);
   delay(500);
 }

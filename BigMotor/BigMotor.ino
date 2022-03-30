@@ -78,7 +78,7 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
 //Serial.print(" ");
 //Serial.print(1024); // To freeze the upper limit
 //Serial.print(" ");
-Serial.print(Max); // to visualize max value they produced during calibration, this line can be commented out as needed
-Serial.print(" ");
+//Serial.print(Max); // to visualize max value they produced during calibration, this line can be commented out as needed
+//Serial.print(" ");
 Serial.println(EMG1); // To send all 'data' points to the plotter
 }  
