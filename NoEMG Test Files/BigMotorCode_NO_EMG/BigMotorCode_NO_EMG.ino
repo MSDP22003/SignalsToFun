@@ -16,7 +16,7 @@ void setup() {
 
 void loop() {
   // Set the speed in rads per second:
-  stepper.setSpeed(20);
+  stepper.setSpeed(100);
   // Step the motor with a constant speed as set by setSpeed():
   stepper.step(5);
 }
