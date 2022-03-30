@@ -16,7 +16,7 @@ int nextstate=0;// will hold the postion that the motor should move to
 int reset=0;
 int calibrate=0;
 int steps=0;
-int distance= 512;// need to find this, is the number of steps to move a quarter of the way around arc
+int distance= 550;// need to find this, is the number of steps to move a quarter of the way around arc
 
 
 const int Resetbutton= 2 ;//number of reset  button pin
@@ -29,7 +29,7 @@ void setup() {
   pinMode(Resetbutton, INPUT);
    pinMode(calibratebutton, INPUT);
   stepper1.setSpeed(15);
-  stepper1.step(STEPS+500);
+  stepper1.step(STEPS+150);
 }
 
 void loop() {
