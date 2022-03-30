@@ -34,6 +34,8 @@ effects of their muscle movement in real time with labeled axes.
 - Python 3.x (tested with python3.9) https://www.python.org/downloads/
 - pip (comes with python)
 
+#### Note: There are two files: main.py and main2.py. This is so that the scripts can run in tandem with each other to have one for each of the two EMG subsystems.
+
 ##### Code Setup
 Type the following into Command Prompt
     
