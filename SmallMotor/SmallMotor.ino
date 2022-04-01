@@ -72,18 +72,7 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
       stepper1.step(-steps);
       currentstate=nextstate;//updates the location of belt
       }
-// thoeretical fix for delay in signal      
-//if (EMG1>=100) {
-//nextstate=EMG1/Max*2048
-//steps=nextstate-currentstate
-//stepper1.step(steps)
-//currentstate=nextstate
-//}
-//else if (EMG1>MAX){
-//nextstate=2048
-//steps=nextstate-currentstate
-//currentstate=nextstate
-//}
+
 
 //Serial.print(0); // To freeze the lower limit
 //Serial.print(" ");
