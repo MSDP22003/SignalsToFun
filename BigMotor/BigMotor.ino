@@ -7,11 +7,12 @@
 #define stepPin  9     // Pink   - 28BYJ48 pin 2
 
 
-int Max=100;// initial value, what somewhere close to noise
+int Max=50;// initial value, what somewhere close to noise
 int EMG1Speed=0;
 int EMG1=0;
 int reset=0;
 int calibrate=0;
+int Min=10000;
 const int Resetbutton= 2; //number of reset  button pin
 const int calibratebutton=3; //number of calibration button pin
 Stepper stepper1(STEPS, dirPin,stepPin);
@@ -30,16 +31,20 @@ reset=digitalRead(Resetbutton);//read the state of reset button
 calibrate=digitalRead(calibratebutton);// read the state of calibration button
 //buttons will be equal to HIGH if pressed, and LOW if not pressed
   if (reset == HIGH){
-        Max=100;
+        Max=50;
+        Min=1000;
       }
   else if (calibrate == HIGH) {
       if (EMG1>Max){
             Max=EMG1;
         }
+        if (EMG1<Min);
+        Min=EMG1;
       }
    else {
    
-      if (EMG1<120){
+      if (EMG1<(Min+40))//40 is arbitarty just to make it easier to stop the motor
+      {
         stepper1.step(0);
       }
       else if(EMG1<Max/4){ //({//120 is level of noise, may need to fine tune
