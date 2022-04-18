@@ -8,13 +8,14 @@
 #define motorPin3  10    // Yellow - 28BYJ48 pin 3
 #define motorPin4  11    // Orange - 28BYJ48 pin 4
 
-int Max=100;// initial value, want somewhere close to noise
+int Max=50;// initial value, want somewhere close to noise
 int EMG1Speed=0;
 int EMG1=0;
 int currentstate=0;// intial position of gear (only 4 options, 1,2,3,4 in order to simplify)
 int nextstate=0;// will hold the postion that the motor should move to
 int reset=0;
 int calibrate=0;
+int Min=10000;
 int steps=0;
 int distance= 550;// need to find this, is the number of steps to move a quarter of the way around arc
 
@@ -40,21 +41,25 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
 //buttons will be equal to HIGH if pressed
   if (reset == HIGH){
         Max=50;// 50 should be near or lower than noise
+        Min=1000;
         nextstate=0;
       }
   else if (calibrate == HIGH) {
       if (EMG1>Max){
             Max=EMG1;
         }
+        if (EMG1<Min){
+          Min=EMG1;
+        }
       }
    else {
    
       
-      if (EMG1 <= Max/5 ) 
+      if (EMG1 <= (Min+40))
       {
         nextstate=0;
       }
-      else if (EMG1> Max/5 &&  EMG1<= 2*Max/5) {
+      else if ( EMG1<= 2*Max/5) {
         nextstate= 1;
       }
       else if(EMG1>2*Max/5 && EMG1 <= 3*Max/5){
