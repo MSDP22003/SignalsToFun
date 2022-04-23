@@ -43,7 +43,7 @@ calibrate=digitalRead(calibratebutton);// read the state of calibration button
       }
    else {
    
-      if (EMG1<(Min+40))//40 is arbitarty just to make it easier to stop the motor
+      if (EMG1<(Min+20))//40 is arbitarty just to make it easier to stop the motor
       {
         stepper1.step(0);
       }
